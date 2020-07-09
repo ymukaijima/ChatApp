@@ -17,8 +17,6 @@ class UserlistViewController: UIViewController {
     private var users = [User]()
     private var selectedUser: User?
     
-//    let db = Firestore.firestore()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

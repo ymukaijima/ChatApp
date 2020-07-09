@@ -16,8 +16,6 @@ class ChatlistViewController: UIViewController {
     private var chatrooms = [ChatRoom]()
 //    private var chatRoomListener: ListenerRegistration?
     
-//    let db = Firestore.firestore()
-    
     private var user: User? {
         didSet {
             //Navbarのタイトルにログイン中のユーザーの名前を表示

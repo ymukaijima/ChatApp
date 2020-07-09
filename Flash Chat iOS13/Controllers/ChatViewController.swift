@@ -18,9 +18,6 @@ class ChatViewController: UIViewController {
     var user: User?
     var chatroom: ChatRoom?
     
-    //Firestoreの設定
-//    let db = Firestore.firestore()
-    
     private var messages = [Message]()
     
     override func viewDidLoad() {
@@ -127,26 +124,6 @@ class ChatViewController: UIViewController {
             return randomString
     }
         
-//        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
-//            db.collection(K.FStore.collectionName).addDocument(data: [
-//                K.FStore.senderField: messageSender,
-//                K.FStore.bodyField: messageBody,
-//                K.FStore.dateField: Date().timeIntervalSince1970
-//            ]) { (error) in
-//                if let e = error {
-//                    print("There was an issue saving data to firestore, \(e)")
-//                } else {
-//                    print("Sccessfully saved data.")
-//                    //メッセージが送れたらTextfieldをクリアにする
-//                    DispatchQueue.main.async {
-//                       self.messageTextfield.text = ""
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-    
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
@@ -156,9 +133,6 @@ class ChatViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
-
-    
-
 }
 
 extension ChatViewController: UITableViewDataSource {

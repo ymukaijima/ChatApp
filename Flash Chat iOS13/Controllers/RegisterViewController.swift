@@ -24,7 +24,6 @@ class RegisterViewController: UIViewController {
         userNameTextfield.layer.cornerRadius = userNameTextfield.frame.size.height / 4
         userNameTextfield.layer.borderWidth = 0
         userNameTextfield.layer.borderColor = .none
-//        registerButton.layer.cornerRadius = registerButton.frame.size.height / 4
         
         emailTextfield.delegate = self
         passwordTextfield.delegate = self

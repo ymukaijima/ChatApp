@@ -28,10 +28,10 @@
 		CE5C494624AD7864005E101D /* UserlistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5C494424AD7864005E101D /* UserlistCell.xib */; };
 		CE8C15ED24A7A36C00E8B576 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE8C15EC24A7A36C00E8B576 /* IQKeyboardManagerSwift */; };
 		CE9ED8DB24A4F0F800432412 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9ED8DA24A4F0F700432412 /* GoogleService-Info.plist */; };
+		CEB2EDC124B750DD00481D09 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2EDC024B750DD00481D09 /* UserDetailViewController.swift */; };
 		CEC0A17424AB694D001784FC /* ChatlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0A17224AB694D001784FC /* ChatlistCell.swift */; };
 		CEC0A17524AB694D001784FC /* ChatlistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC0A17324AB694D001784FC /* ChatlistCell.xib */; };
 		CEC0A17924AB6F29001784FC /* ChatlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0A17824AB6F29001784FC /* ChatlistViewController.swift */; };
-		CEC0A17B24AC96DF001784FC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0A17A24AC96DF001784FC /* UIColor.swift */; };
 		CEE4491224ADD141007B3000 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4491124ADD141007B3000 /* ChatRoom.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +59,10 @@
 		CE5C494324AD7864005E101D /* UserlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserlistCell.swift; sourceTree = "<group>"; };
 		CE5C494424AD7864005E101D /* UserlistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserlistCell.xib; sourceTree = "<group>"; };
 		CE9ED8DA24A4F0F700432412 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEB2EDC024B750DD00481D09 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDetailViewController.swift; path = "Flash Chat iOS13/Views/UserDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		CEC0A17224AB694D001784FC /* ChatlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatlistCell.swift; sourceTree = "<group>"; };
 		CEC0A17324AB694D001784FC /* ChatlistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatlistCell.xib; sourceTree = "<group>"; };
 		CEC0A17824AB6F29001784FC /* ChatlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatlistViewController.swift; sourceTree = SOURCE_ROOT; };
-		CEC0A17A24AC96DF001784FC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		CEE4491124ADD141007B3000 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = SOURCE_ROOT; };
 		F6667874F89B8453E4707B88 /* Pods-Flash Chat iOS13.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.debug.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +112,6 @@
 				0B628184235DEE8400E35CAF /* Info.plist */,
 				CE9ED8DA24A4F0F700432412 /* GoogleService-Info.plist */,
 				CE3D362924A5FD1900EB7D84 /* Constants.swift */,
-				CEC0A17A24AC96DF001784FC /* UIColor.swift */,
 			);
 			path = "Flash Chat iOS13";
 			sourceTree = "<group>";
@@ -126,6 +125,7 @@
 				CEC0A17824AB6F29001784FC /* ChatlistViewController.swift */,
 				CE5C494124AD7244005E101D /* UserlistViewController.swift */,
 				0B628190235DF01B00E35CAF /* ChatViewController.swift */,
+				CEB2EDC024B750DD00481D09 /* UserDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B62818B235DF00000E35CAF /* WelcomeViewController.swift in Sources */,
-				CEC0A17B24AC96DF001784FC /* UIColor.swift in Sources */,
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,
@@ -308,6 +307,7 @@
 				0B628191235DF01B00E35CAF /* ChatViewController.swift in Sources */,
 				CE5C494524AD7864005E101D /* UserlistCell.swift in Sources */,
 				CEE4491224ADD141007B3000 /* ChatRoom.swift in Sources */,
+				CEB2EDC124B750DD00481D09 /* UserDetailViewController.swift in Sources */,
 				CE5C494224AD7244005E101D /* UserlistViewController.swift in Sources */,
 				0B62818D235DF00B00E35CAF /* RegisterViewController.swift in Sources */,
 				CE3D362F24A646DC00EB7D84 /* MessageCell.swift in Sources */,
