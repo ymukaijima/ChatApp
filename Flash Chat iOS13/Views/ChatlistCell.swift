@@ -21,12 +21,12 @@ class ChatlistCell: UITableViewCell {
         didSet {
             if let chatroom = chatroom {
                 chatlistNameLabel.text = chatroom.partnerUser?.userName
-                
+
                 guard let url = URL(string: chatroom.partnerUser?.profileImageUrl ?? "") else { return }
                 Nuke.loadImage(with: url, into: chatlistImageView)
-                
+
                 chatlistDateLabel.text = dateFormatterForDateLabel(date: chatroom.latestMessage?.createdAt.dateValue() ?? Date())
-                    
+
                 latestMessageLabel.text = chatroom.latestMessage?.message
             }
         }
@@ -36,6 +36,17 @@ class ChatlistCell: UITableViewCell {
         super.awakeFromNib()
         
         chatlistImageView.layer.cornerRadius = chatlistImageView.frame.size.height / 2
+        
+//        if let chatroom = chatroom {
+//            chatlistNameLabel.text = chatroom.partnerUser?.userName
+//
+//            guard let url = URL(string: chatroom.partnerUser?.profileImageUrl ?? "") else { return }
+//            Nuke.loadImage(with: url, into: chatlistImageView)
+//
+//            chatlistDateLabel.text = dateFormatterForDateLabel(date: chatroom.latestMessage?.createdAt.dateValue() ?? Date())
+//
+//            latestMessageLabel.text = chatroom.latestMessage?.message
+//        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

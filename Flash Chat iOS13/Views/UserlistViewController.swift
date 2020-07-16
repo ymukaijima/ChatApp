@@ -15,7 +15,7 @@ class UserlistViewController: UIViewController {
     @IBOutlet weak var startTalkingButton: UIButton!
     
     private var users = [User]()
-    private var selectedUser: User?
+    private var selectedUsers: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +24,26 @@ class UserlistViewController: UIViewController {
         userlistTableView.dataSource = self
         userlistTableView.register(UINib(nibName: K.userlistCell, bundle: nil), forCellReuseIdentifier: K.userlistCell)
         userlistTableView.tableFooterView = UIView()
+        // UITableView全体は複数選択可能に設定
+//        userlistTableView.allowsMultipleSelection = true
+//        userlistTableView.isEditing = true
+//        userlistTableView.allowsMultipleSelectionDuringEditing = true
+        
         //最初はStart Talkingボタンをおせないようにしておく
         startTalkingButton.isEnabled = false
         
         fetchUserInfoFromFirestore()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //Tab barを表示させる
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     @IBAction func startTalkingButtonPressed(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let partnerUid = self.selectedUser?.uid else { return }
+        guard let partnerUid = self.selectedUsers?.uid else { return }
         let members = [uid, partnerUid]
         
         let docData = [
@@ -46,9 +57,8 @@ class UserlistViewController: UIViewController {
                 print(e.localizedDescription)
                 return
             }
-            
-            print("Success!")
-            
+            //会話したいメンバーを選んだあとに、Chatlistへ戻る
+            self.performSegue(withIdentifier: K.userlistToChatlistSegue, sender: self)
         }
     }
     
@@ -93,8 +103,15 @@ extension UserlistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startTalkingButton.isEnabled = true
+        
         let user = users[indexPath.row]
-        self.selectedUser = user
+//        let users = userlistTableView.indexPathsForSelectedRows
+//        print("users: ",users)
+//
+//        print("indexPath.row: ",indexPath.row)
+//        print("self.selectedUsers: ",self.selectedUsers)
+        
+        self.selectedUsers = user
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

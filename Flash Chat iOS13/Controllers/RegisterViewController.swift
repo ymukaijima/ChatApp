@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class RegisterViewController: UIViewController {
     
@@ -46,6 +47,8 @@ class RegisterViewController: UIViewController {
         guard let image = profileImageButton.imageView?.image else { return }
         guard let uploadImage = image.jpegData(compressionQuality: 0.3) else { return }
         
+        HUD.show(.progress)
+        
         let fileName = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("profile_image").child(fileName)
         
@@ -53,16 +56,19 @@ class RegisterViewController: UIViewController {
         storageRef.putData(uploadImage, metadata: nil) { (metadata, error) in
             if let e = error {
                 print(e.localizedDescription)
+                HUD.hide()
                 return
             }
             storageRef.downloadURL { (url, error) in
                 if let e = error {
                     print(e.localizedDescription)
+                    HUD.hide()
                     return
                 }
                 
                 guard let urlString = url?.absoluteString else { return }
                 self.createUserToFirestore(profileImageUrl: urlString)
+                HUD.flash(.success, delay: 0.3)
             }
         }
         

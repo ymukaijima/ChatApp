@@ -14,7 +14,8 @@ class ChatlistViewController: UIViewController {
     @IBOutlet weak var chatlistTableView: UITableView!
     
     private var chatrooms = [ChatRoom]()
-//    private var chatRoomListener: ListenerRegistration?
+    
+    private var chatRoomListener: ListenerRegistration?
     
     private var user: User? {
         didSet {
@@ -36,28 +37,26 @@ class ChatlistViewController: UIViewController {
         title = K.appName
         //Backボタンを消す
         navigationItem.hidesBackButton = true
-        
-        fetchLoginUserInfo()
-        fetchChatroomsInfoFromFirestore()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        fetchLoginUserInfo()
-//        fetchChatroomsInfoFromFirestore()
+        //Tab barを表示させる
+        self.tabBarController?.tabBar.isHidden = false
+        
+        fetchLoginUserInfo()
+        fetchChatroomsInfoFromFirestore()
     }
     
     private func fetchChatroomsInfoFromFirestore() {
         //Backボタンで戻った時にデータが二重で表示されるのを避ける
-//        chatRoomListener?.remove()
-//        chatrooms.removeAll()
-//        chatlistTableView.reloadData()
+        chatRoomListener?.remove()
+        chatrooms.removeAll()
+        chatlistTableView.reloadData()
         
-//        chatRoomListener =
-            Firestore.firestore().collection("chatRooms")
-            .addSnapshotListener { (snapshots, error) in
-                
+        chatRoomListener = Firestore.firestore().collection("chatRooms").addSnapshotListener { (snapshots, error) in
                 if let e = error {
                     print(e.localizedDescription)
                     return
@@ -72,7 +71,6 @@ class ChatlistViewController: UIViewController {
                     }
                 })
         }
-//        chatlistTableView.reloadData()
     }
     
     //Chatlistの情報が更新された時に、更新された情報が追加される
@@ -102,6 +100,8 @@ class ChatlistViewController: UIViewController {
                     chatroom.partnerUser = user
                     
                     guard let chatRoomId = chatroom.documentId else { return }
+                    print("chatRoomId :", chatRoomId)
+                    
                     let latestMessageID = chatroom.latestMessageID
                     
                     //もしlatestMessageIDがnilだったときの処理
@@ -117,6 +117,9 @@ class ChatlistViewController: UIViewController {
                             return
                         }
                         
+                        print("chatRoomId :", chatRoomId)
+                        print("latestMessageID :", latestMessageID)
+                        
                         guard let dic = messageSnapshot?.data() else { return }
                         let message = Message(dic: dic)
                         chatroom.latestMessage = message
@@ -129,6 +132,7 @@ class ChatlistViewController: UIViewController {
             }
         }
     }
+
     
     //ログイン中のユーザー情報を取得
     private func fetchLoginUserInfo() {
@@ -141,9 +145,9 @@ class ChatlistViewController: UIViewController {
             }
             
             guard let snapshot = snapshot, let dic = snapshot.data() else { return }
+            
             let user = User(dic: dic)
             self.user = user
-            
         }
     }
 }

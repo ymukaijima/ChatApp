@@ -26,17 +26,22 @@ class ChatViewController: UIViewController {
         //TableViewの設定
         chatTableView.dataSource = self
         chatTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
         //NavigationbarにAppタイトルを表示させる
         title = K.appName
-        //Backボタンを消す
-//        navigationItem.hidesBackButton = true
+        //Tab barを隠す
+        self.tabBarController?.tabBar.isHidden = true
         
+        chatTableView.reloadData()
         loadMessages()
+        
     }
     
     func loadMessages() {
 
         guard let chatroomDocId = chatroom?.documentId else { return }
+        print("chatroomDocId: ", chatroomDocId)
+        
         
         Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").addSnapshotListener { (snapshots, error) in
             if let e = error {
@@ -70,15 +75,16 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
-        addMessageToFirestore()
+        guard let messageBody = messageTextfield.text else { return }
+        addMessageToFirestore(messageBody: messageBody)
     }
     
-    private func addMessageToFirestore() {
-        guard let messageBody = messageTextfield.text else { return }
+    private func addMessageToFirestore(messageBody: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let chatroomDocId = chatroom?.documentId else { return }
         guard let name = user?.userName else { return }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         let messageId = randomString(length: 20)
+        
         
         let docData = [
             "name": name,
@@ -87,7 +93,7 @@ class ChatViewController: UIViewController {
             "message": messageBody
             ] as [String : Any]
         
-        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document().setData(docData) { (error) in
+        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document(messageId).setData(docData) { (error) in
             if let e = error {
                 print(e.localizedDescription)
                 return
@@ -107,6 +113,8 @@ class ChatViewController: UIViewController {
             DispatchQueue.main.async {
                 self.messageTextfield.text = ""
             }
+            
+            self.chatTableView.reloadData()
         }
     }
     

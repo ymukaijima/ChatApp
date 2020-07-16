@@ -9,21 +9,12 @@
 import Foundation
 import Firebase
 
-//struct Message {
-//    let sender: String
-//    let body: String
-//}
-
 class Message {
     
     let name: String
     let message: String
     let uid: String
     let createdAt: Timestamp
-    
-    //後で消すかも
-    var sender: String?
-    var body: String?
     
     var partnerUser: User?
     

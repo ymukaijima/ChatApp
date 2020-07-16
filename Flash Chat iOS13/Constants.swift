@@ -17,6 +17,7 @@ struct K {
     static let chatlistToChatSegue = "ChatlistToChat"
     static let chatlistToUserlistSegue = "ChatlistToUserlist"
     static let userlistSegue = "UserlistToChat"
+    static let userlistToChatlistSegue = "UserlistToChatlist"
     
     struct BrandColors {
         static let purple = "BrandPurple"

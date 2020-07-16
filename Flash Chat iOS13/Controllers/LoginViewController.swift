@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class LoginViewController: UIViewController {
     
@@ -15,17 +16,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextfield: UITextField!
 
     @IBAction func loginPressed(_ sender: UIButton) {
+        HUD.show(.progress)
         
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e = error {
                     print(e.localizedDescription)
+                    HUD.hide()
                 } else {
+                    HUD.flash(.success, delay: 0.3)
                     self.performSegue(withIdentifier: K.loginSegue, sender: self)
                 }
             }
             
         }
     }
-    
 }
